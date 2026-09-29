@@ -39,5 +39,5 @@ jobs:
             --exclude 'README.md' \
             --exclude '.well-known/' \
             --exclude 'cgi-bin/' \
-            -e 'ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes' \
+            -e 'ssh -vvv -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes' \
             ./ "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_TARGET/"
