@@ -14,7 +14,28 @@ Then open `http://localhost:8080`.
 
 ## Publish
 
-The `Publish to webhotel` workflow publishes the static files to the production webhotel over SSH. DNS remains unchanged. It is currently started manually; enable the `push` trigger after the first successful deployment.
+DNS remains unchanged. The recommended production deployment is a pull from the webhotel: it avoids relying on the host accepting incoming GitHub Actions SSH connections and needs no password or private key in the repository.
+
+In the cPanel Terminal, run the following once:
+
+```sh
+git clone --branch main https://github.com/VegardHammer/hammerhome.git /home/hammerlir/hammerhome
+bash /home/hammerlir/hammerhome/scripts/publish-webhotel.sh
+```
+
+The second command publishes the static site to `/home/hammerlir/public_html` and removes the existing WordPress files, while preserving `.well-known` and `cgi-bin`.
+
+Then add this command as a cPanel Cron Job running every five minutes:
+
+```sh
+/bin/bash /home/hammerlir/hammerhome/scripts/publish-webhotel.sh >> /home/hammerlir/hammerhome-deploy.log 2>&1
+```
+
+Each GitHub push reaches the site on the next five-minute run.
+
+### GitHub Actions fallback
+
+The `Publish to webhotel` workflow can also publish over SSH when run manually.
 
 The GitHub repository needs these Actions secrets before the first deployment:
 
