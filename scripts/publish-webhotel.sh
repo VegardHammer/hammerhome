@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-repository=/home/hammerlir/hammerhome
-web_root=/home/hammerlir/public_html
+repository=/home/hammelir/hammerhome
+web_root=/home/hammelir/public_html
 
 /usr/bin/git -C "$repository" fetch --quiet origin main
 /usr/bin/git -C "$repository" reset --hard --quiet origin/main

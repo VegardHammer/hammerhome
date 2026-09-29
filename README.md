@@ -19,16 +19,16 @@ DNS remains unchanged. The recommended production deployment is a pull from the 
 In the cPanel Terminal, run the following once:
 
 ```sh
-git clone --branch main https://github.com/VegardHammer/hammerhome.git /home/hammerlir/hammerhome
-bash /home/hammerlir/hammerhome/scripts/publish-webhotel.sh
+git clone --branch main https://github.com/VegardHammer/hammerhome.git /home/hammelir/hammerhome
+bash /home/hammelir/hammerhome/scripts/publish-webhotel.sh
 ```
 
-The second command publishes the static site to `/home/hammerlir/public_html` and removes the existing WordPress files, while preserving `.well-known`, `cgi-bin`, and all current subdomain directories: `hammerorchestra`, `vegard`, `tobias.hammerhome.no`, and `tracy.hammerhome.no`.
+The second command publishes the static site to `/home/hammelir/public_html` and removes the existing WordPress files, while preserving `.well-known`, `cgi-bin`, and all current subdomain directories: `hammerorchestra`, `vegard`, `tobias.hammerhome.no`, and `tracy.hammerhome.no`.
 
 Then add this command as a cPanel Cron Job running every five minutes:
 
 ```sh
-/bin/bash /home/hammerlir/hammerhome/scripts/publish-webhotel.sh >> /home/hammerlir/hammerhome-deploy.log 2>&1
+/bin/bash /home/hammelir/hammerhome/scripts/publish-webhotel.sh >> /home/hammelir/hammerhome-deploy.log 2>&1
 ```
 
 Each GitHub push reaches the site on the next five-minute run.
