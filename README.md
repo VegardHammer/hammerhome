@@ -23,7 +23,7 @@ git clone --branch main https://github.com/VegardHammer/hammerhome.git /home/ham
 bash /home/hammerlir/hammerhome/scripts/publish-webhotel.sh
 ```
 
-The second command publishes the static site to `/home/hammerlir/public_html` and removes the existing WordPress files, while preserving `.well-known`, `cgi-bin`, and the `hammerorchestra` and `vegard` subdomain directories.
+The second command publishes the static site to `/home/hammerlir/public_html` and removes the existing WordPress files, while preserving `.well-known`, `cgi-bin`, and all current subdomain directories: `hammerorchestra`, `vegard`, `tobias.hammerhome.no`, and `tracy.hammerhome.no`.
 
 Then add this command as a cPanel Cron Job running every five minutes:
 

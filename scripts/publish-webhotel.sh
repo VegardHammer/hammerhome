@@ -17,4 +17,6 @@ web_root=/home/hammerlir/public_html
   --exclude 'cgi-bin/' \
   --exclude 'hammerorchestra/' \
   --exclude 'vegard/' \
+  --exclude 'tobias.hammerhome.no/' \
+  --exclude 'tracy.hammerhome.no/' \
   "$repository/" "$web_root/"
