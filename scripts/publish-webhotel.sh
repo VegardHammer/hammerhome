@@ -7,7 +7,7 @@ web_root=/home/hammelir/public_html
 /usr/bin/git -C "$repository" fetch --quiet origin main
 /usr/bin/git -C "$repository" reset --hard --quiet origin/main
 
-/usr/bin/rsync -a --delete-after \
+/usr/bin/rsync -a \
   --exclude '.git/' \
   --exclude '.github/' \
   --exclude '.gitignore' \
