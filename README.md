@@ -14,7 +14,7 @@ Then open `http://localhost:8080`.
 
 ## Publish
 
-Every push to `main` publishes the static files to the production webhotel over SSH. DNS remains unchanged.
+The `Publish to webhotel` workflow publishes the static files to the production webhotel over SSH. DNS remains unchanged. It is currently started manually; enable the `push` trigger after the first successful deployment.
 
 The GitHub repository needs these Actions secrets before the first deployment:
 

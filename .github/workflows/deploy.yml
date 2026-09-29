@@ -1,8 +1,6 @@
 name: Publish to webhotel
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 concurrency:
@@ -39,5 +37,5 @@ jobs:
             --exclude 'README.md' \
             --exclude '.well-known/' \
             --exclude 'cgi-bin/' \
-            -e 'ssh -vvv -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes' \
+            -e 'ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes' \
             ./ "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_TARGET/"
