@@ -24,4 +24,6 @@ The GitHub repository needs these Actions secrets before the first deployment:
 - `DEPLOY_SSH_PRIVATE_KEY` — deploy key private key
 - `DEPLOY_SSH_KNOWN_HOSTS` — pinned SSH host key
 
+If the webhotel rejects public-key authentication, add `DEPLOY_SSH_PASSWORD` as a GitHub Actions secret containing the cPanel account password. The workflow will then use password-authenticated SFTP instead. The password is never stored in this repository or printed in the deployment log.
+
 The deployment mirrors the project into the target path and removes obsolete site files, while preserving `.well-known` and `cgi-bin`.

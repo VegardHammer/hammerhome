@@ -15,6 +15,7 @@ jobs:
       DEPLOY_HOST: ${{ secrets.DEPLOY_SSH_HOST }}
       DEPLOY_USER: ${{ secrets.DEPLOY_SSH_USER }}
       DEPLOY_TARGET: ${{ secrets.DEPLOY_TARGET_PATH }}
+      DEPLOY_PASSWORD: ${{ secrets.DEPLOY_SSH_PASSWORD }}
     steps:
       - name: Check out source
         uses: actions/checkout@v4
@@ -30,6 +31,15 @@ jobs:
       - name: Publish site files
         shell: bash
         run: |
+          if [[ -n "$DEPLOY_PASSWORD" ]]; then
+            sudo apt-get update --quiet
+            sudo apt-get install --yes --quiet sshpass
+            export SSHPASS="$DEPLOY_PASSWORD"
+            transport='sshpass -e ssh -o IdentitiesOnly=yes'
+          else
+            transport='ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes'
+          fi
+
           rsync -az --delete-after \
             --exclude '.git/' \
             --exclude '.github/' \
@@ -37,5 +47,5 @@ jobs:
             --exclude 'README.md' \
             --exclude '.well-known/' \
             --exclude 'cgi-bin/' \
-            -e 'ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes' \
+            -e "$transport" \
             ./ "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_TARGET/"
